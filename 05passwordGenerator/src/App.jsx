@@ -32,6 +32,8 @@ function App() {
     
 
   }, [length, hasNumber, hasSymbol, setPassword])
+
+  
   useEffect(() => {
     passwordGenerator()
   }, [length, hasNumber, hasSymbol, setPassword])
