@@ -18,16 +18,22 @@ function App() {
     setToCurrency(fromCurrency)
   }
 
-  const convert = () => setconvertedAmount(amount * currencyInfo[toCurrency]);
+  const convert = () => {
+    if (amount>0) setconvertedAmount(amount * currencyInfo[toCurrency]);
+    else {
+      alert("Please enter a valid amount")
+    }
+  }
 
   return (
     <div
-      className="w-screen h-screen flex flex-wrap justify-center items-center bg-black "
+      className="w-full h-screen flex float-none justify-center items-center"
       style={{
-        backgroundColor: "#1d1d1d",
+       
+        backgroundColor: "black",
       }}
     >
-      <div className="w-full">
+      <div className="w-screen">
         <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
           <form
             onSubmit={(e) => {
@@ -40,8 +46,8 @@ function App() {
                 label="From"
                 amount={amount}
                 Currencyoptions={options}
-                onCurrencyChange={(amount) => setAmount(amount)}
-                onAmountChange={(currency) => setAmount(currency)}
+                onCurrencyChange={(currency) => setFromCurrency(currency)}
+                onAmountChange={(amount) => setAmount(amount)}
                 selectedCurrency={fromCurrency}
                 
                 
@@ -65,11 +71,10 @@ function App() {
                 onCurrencyChange={(currency) => setToCurrency(currency)}
                 onAmountChange={(amount) => setAmount(amount)}
                 selectedCurrency={toCurrency}
-                amountDisabled
               />
             </div>
             <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
-              Convert {fromCurrency.toUpperCase()} to {toCurrency.toUpperCase()}
+              Convert {fromCurrency.toUpperCase()} to {toCurrency.toUpperCase()} ({convertedAmount} {toCurrency.toUpperCase()}) 
             </button>
           </form>
         </div>
